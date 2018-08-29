@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateSaleProductsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('sale_products', function (Blueprint $table) {
+            $table->uuid('id');
+            $table->string('client_id');
+            $table->string('product_id');
+            $table->string('sale_id');
+            $table->string('price');
+            $table->string('cost');
+            $table->json('imei');
+            $table->integer('quantity');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('sale_products');
+    }
+}

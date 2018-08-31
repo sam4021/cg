@@ -15,10 +15,19 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->uuid('id');
-            $table->string('client_id');
+            $table->primary('id');
+            $table->uuid('company_id');
+            $table->uuid('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('company_id')->references('id')->on('companies');
             $table->string('message');
+            $table->softDeletes();
             $table->timestamps();
         });
+
+        // Schema::table('notifications', function($table) {
+            
+        // });
     }
 
     /**

@@ -10,12 +10,12 @@ class Notifications extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'id', 'client_id', 'message'
+        'id', 'company_id', 'message'
     ];
 
-    public function client()
+    public function company()
     {
-        return $this->belongsTo('App\Model\Client', 'id', 'client_id');
+        return $this->belongsTo('App\Model\Company', 'id', 'company_id');
     }
 
     /**
@@ -24,4 +24,6 @@ class Notifications extends Model
     * @var bool
     */
     public $incrementing = false;
+
+    protected $dates = ['deleted_at'];
 }

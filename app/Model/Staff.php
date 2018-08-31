@@ -13,11 +13,6 @@ class Staff extends Model
         'id', 'first_name', 'last_name', 'email', 'password'
     ];
 
-    public function client()
-    {
-        return $this->belongsTo('App\Model\Client', 'id', 'client_id');
-    }
-
     public function vendor()
     {
         return $this->hasMany('App\Model\Vendor', 'product_id', 'id');
@@ -29,4 +24,6 @@ class Staff extends Model
     * @var bool
     */
     public $incrementing = false;
+
+    protected $dates = ['deleted_at'];
 }

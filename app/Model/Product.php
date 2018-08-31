@@ -10,12 +10,12 @@ class Product extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'id', 'client_id', 'title', 'price', 'cost'
+        'id', 'company_id', 'title', 'price', 'cost'
     ];
 
-    public function client()
+    public function company()
     {
-        return $this->belongsTo('App\Model\Client', 'id', 'client_id');
+        return $this->belongsTo('App\Model\Company', 'id', 'company_id');
     }
 
     public function vendor()
@@ -29,4 +29,6 @@ class Product extends Model
     * @var bool
     */
     public $incrementing = false;
+
+    protected $dates = ['deleted_at'];
 }

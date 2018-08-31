@@ -15,14 +15,25 @@ class CreateSaleProductsTable extends Migration
     {
         Schema::create('sale_products', function (Blueprint $table) {
             $table->uuid('id');
-            $table->string('client_id');
-            $table->string('product_id');
-            $table->string('sale_id');
+            $table->primary('id');
+            $table->uuid('company_id');
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->uuid('product_id');
+            $table->foreign('product_id')->references('id')->on('products');
+            $table->uuid('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->uuid('sale_id');
+            $table->foreign('sale_id')->references('id')->on('sales');
             $table->string('price');
             $table->string('cost');
             $table->json('imei');
             $table->integer('quantity');
+            $table->softDeletes();
             $table->timestamps();
+        });
+
+        Schema::table('sale_products', function($table) {
+            
         });
     }
 

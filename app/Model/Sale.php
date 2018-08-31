@@ -11,12 +11,12 @@ class Sale extends Model
     use SoftDeletes,Notifiable;
 
     protected $fillable = [
-        'id', 'client_id', 'customer_id', 'status'
+        'id', 'company_id', 'customer_id', 'status'
     ];
 
-    public function client()
+    public function company()
     {
-        return $this->belongsTo('App\Model\Client', 'id', 'client_id');
+        return $this->belongsTo('App\Model\Company', 'id', 'company_id');
     }
 
     public function customer()
@@ -40,4 +40,6 @@ class Sale extends Model
     * @var bool
     */
     public $incrementing = false;
+
+    protected $dates = ['deleted_at'];
 }

@@ -15,12 +15,23 @@ class CreateVendorPaymentsTable extends Migration
     {
         Schema::create('vendor_payments', function (Blueprint $table) {
             $table->uuid('id');
-            $table->string('vendor_id');
+            $table->primary('id');
+            $table->uuid('vendor_id');
+            $table->uuid('company_id');
+            $table->uuid('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('vendor_id')->references('id')->on('vendors');
             $table->string('amount');
             $table->string('mode_of_pay');
             $table->string('transaction_id');
+            $table->softDeletes();
             $table->timestamps();
         });
+
+        // Schema::table('vendor_payments', function($table) {
+            
+        // });
     }
 
     /**

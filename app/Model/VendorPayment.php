@@ -10,12 +10,12 @@ class VendorPayment extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'id', 'client_id', 'vendor_id', 'amount', 'mode_of_pay', 'transaction_id'
+        'id', 'company_id', 'vendor_id', 'amount', 'mode_of_pay', 'transaction_id'
     ];
 
-    public function client()
+    public function company()
     {
-        return $this->belongsTo('App\Model\Client', 'id', 'client_id');
+        return $this->belongsTo('App\Model\Company', 'id', 'company_id');
     }
 
     public function vendor()
@@ -29,4 +29,6 @@ class VendorPayment extends Model
     * @var bool
     */
     public $incrementing = false;
+
+    protected $dates = ['deleted_at'];
 }

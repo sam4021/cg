@@ -15,12 +15,21 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->uuid('id');
-            $table->string('client_id');
+            $table->primary('id');
+            $table->uuid('company_id');
+            $table->uuid('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('company_id')->references('id')->on('companies');
             $table->string('title');
-            $table->uuid('price');
-            $table->uuid('cost');
+            $table->integer('price');
+            $table->integer('cost');
+            $table->softDeletes();
             $table->timestamps();
         });
+
+        // Schema::table('products', function($table) {
+            
+        // });
     }
 
     /**

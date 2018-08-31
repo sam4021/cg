@@ -10,12 +10,12 @@ class Expenses extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'id', 'client_id', 'amount', 'usage'
+        'id', 'company_id', 'amount', 'usage'
     ];
 
-    public function client()
+    public function company()
     {
-        return $this->belongsTo('App\Model\Client', 'id', 'client_id');
+        return $this->belongsTo('App\Model\Company', 'id', 'company_id');
     }
 
     /**
@@ -24,4 +24,6 @@ class Expenses extends Model
     * @var bool
     */
     public $incrementing = false;
+
+    protected $dates = ['deleted_at'];
 }

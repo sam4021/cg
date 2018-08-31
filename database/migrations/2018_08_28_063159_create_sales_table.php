@@ -15,11 +15,21 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->uuid('id');
-            $table->string('client_id');
-            $table->string('customer_id');
+            $table->primary('id');
+            $table->uuid('company_id');
+            $table->uuid('customer_id');
+            $table->uuid('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('customer_id')->references('id')->on('customers');
             $table->string('status');
+            $table->softDeletes();
             $table->timestamps();
         });
+
+        // Schema::table('sales', function($table) {
+            
+        // });
     }
 
     /**

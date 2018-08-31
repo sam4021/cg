@@ -34,4 +34,6 @@ class User extends Authenticatable
     * @var bool
     */
     public $incrementing = false;
+    
+    protected $dates = ['deleted_at'];
 }

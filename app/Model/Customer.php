@@ -10,12 +10,12 @@ class Customer extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'id', 'client_id', 'name', 'email', 'location'
+        'id', 'company_id', 'name', 'email', 'location'
     ];
 
-    public function client()
+    public function company()
     {
-        return $this->belongsTo('App\Model\Client', 'id', 'client_id');
+        return $this->belongsTo('App\Model\Company', 'id', 'company_id');
     }
 
     /**
@@ -24,4 +24,6 @@ class Customer extends Model
     * @var bool
     */
     public $incrementing = false;
+
+    protected $dates = ['deleted_at'];
 }
